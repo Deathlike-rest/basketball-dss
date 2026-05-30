@@ -1,0 +1,41 @@
+# Трёхуровневая архитектура (раздел 2.5.1): БД (PostgreSQL) — сервер приложения
+# (Flask) — клиент (Vue). Запуск: docker compose up --build
+services:
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: dss
+      POSTGRES_PASSWORD: dss
+      POSTGRES_DB: basketball_dss
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dss -d basketball_dss"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql+psycopg2://dss:dss@db:5432/basketball_dss
+      SECRET_KEY: change-me-in-prod
+    ports:
+      - "5000:5000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    environment:
+      API_TARGET: http://backend:5000
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
