@@ -17,6 +17,7 @@ async function doLogout() {
       <router-link v-if="auth.isStaff" to="/">Команда</router-link>
       <router-link v-if="auth.isStaff" to="/lineup">Стартовая пятёрка</router-link>
       <router-link v-if="auth.isStaff" to="/data">Ввод данных</router-link>
+      <router-link v-if="auth.isStaff" to="/import">Импорт игры</router-link>
       <router-link v-else :to="`/player/${auth.user.player_id}`">Мой профиль</router-link>
     </nav>
     <div>

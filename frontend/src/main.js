@@ -8,6 +8,7 @@ import CoachDashboard from './views/CoachDashboard.vue'
 import PlayerCard from './views/PlayerCard.vue'
 import LineupBuilder from './views/LineupBuilder.vue'
 import DataEntry from './views/DataEntry.vue'
+import MatchImport from './views/MatchImport.vue'
 import Report from './views/Report.vue'
 import { useAuthStore } from './store/auth'
 import './style.css'
@@ -20,6 +21,7 @@ const router = createRouter({
     { path: '/player/:id', component: PlayerCard, props: true },
     { path: '/lineup', component: LineupBuilder, meta: { staff: true } },
     { path: '/data', component: DataEntry, meta: { staff: true } },
+    { path: '/import', component: MatchImport, meta: { staff: true } },
     { path: '/report', component: Report, meta: { staff: true } },
   ],
 })

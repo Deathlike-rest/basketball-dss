@@ -34,6 +34,11 @@ export const api = {
     headers: { 'Content-Type': 'text/csv' },
   }),
 
+  // Импорт матчевого протокола (раздел 2.5.3).
+  matchImportPreview: (csv) =>
+    client.post('/data/import/match/preview', csv, { headers: { 'Content-Type': 'text/csv' } }),
+  matchImportCommit: (payload) => client.post('/data/import/match/commit', payload),
+
   // Экспорт отчётов (раздел 2.4.1, этап 7). Возвращают URL для скачивания CSV
   // (сессионная кука уходит автоматически — тот же origin через прокси Vite).
   teamCsvUrl: () => '/api/export/team.csv',
