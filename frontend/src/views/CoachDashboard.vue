@@ -30,7 +30,13 @@ onMounted(async () => {
 
 <template>
   <div class="container">
-    <h1>Экран тренера</h1>
+    <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px">
+      <h1>Экран тренера</h1>
+      <div style="display:flex; gap:10px">
+        <a class="btn secondary" :href="api.teamCsvUrl()">Экспорт CSV</a>
+        <router-link class="btn" to="/report">Отчёт / печать</router-link>
+      </div>
+    </div>
     <div v-if="loading" class="muted">Загрузка…</div>
     <div v-else class="grid grid-dash">
       <!-- Блок 1: список игроков команды с R* и тенденцией -->

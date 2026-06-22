@@ -29,8 +29,9 @@ def create_app(config_object: type = Config) -> Flask:
     from api.recommendations import recommendations_bp
     from api.alerts import alerts_bp
     from api.data_import import data_import_bp
+    from api.export import export_bp
 
-    for bp in (players_bp, ratings_bp, lineup_bp, recommendations_bp, alerts_bp, data_import_bp):
+    for bp in (players_bp, ratings_bp, lineup_bp, recommendations_bp, alerts_bp, data_import_bp, export_bp):
         app.register_blueprint(bp)
 
     @app.get("/api/health")

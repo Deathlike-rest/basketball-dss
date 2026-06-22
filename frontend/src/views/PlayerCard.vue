@@ -45,6 +45,8 @@ const rating = computed(() => data.value?.attributes?.rating)
     </h1>
     <p class="muted">{{ data.profile.position_name }} · {{ data.profile.team }}</p>
 
+    <a class="btn secondary" :href="api.playerCsvUrl(id)" style="display:inline-block; margin-bottom:12px">Экспорт игрока (CSV)</a>
+
     <div class="tabs">
       <div v-for="[key, label] in tabs" :key="key"
            class="tab" :class="{ active: tab === key }" @click="tab = key">{{ label }}</div>

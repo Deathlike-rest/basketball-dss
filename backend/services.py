@@ -104,6 +104,9 @@ def team_overview() -> list[dict]:
                 "position": player.primary_position,
                 "R_P": r["R_P"],
                 "R_star": r["R_star"],
+                "M_IQ": r["modifiers"]["M_IQ"],
+                "M_S": r["modifiers"]["M_S"],
+                "M_L": r["modifiers"]["M_L"],
                 "trend": rating_trend(player.id),
             }
         )

@@ -36,7 +36,8 @@ def integral_rating(scores: dict[str, float], position: str) -> float:
     for code in present:
         w = WEIGHT_MATRIX[code][position] / weight_sum  # пересчёт весов
         total += scores[code] * w
-    return round(total, 1)
+    # Рейтинг читается по той же целочисленной шкале, что и отдельный атрибут (раздел 2.2.5).
+    return int(round(total))
 
 
 def position_vector(scores: dict[str, float]) -> dict[str, float]:
@@ -59,7 +60,7 @@ def apply_modifiers(r_p: float, m_iq: int = 0, m_s: int = 0, m_l: int = 0) -> fl
     _check_range(m_iq, MOD_IQ_RANGE, "M_IQ")
     _check_range(m_s, MOD_S_RANGE, "M_S")
     _check_range(m_l, MOD_L_RANGE, "M_L")
-    return round(min(SCALE_MAX, r_p + m_iq + m_s + m_l), 1)
+    return int(round(min(SCALE_MAX, r_p + m_iq + m_s + m_l)))
 
 
 def full_rating(

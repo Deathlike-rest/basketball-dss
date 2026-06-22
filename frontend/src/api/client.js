@@ -33,4 +33,9 @@ export const api = {
   importPreview: (csv) => client.post('/data/import/preview', csv, {
     headers: { 'Content-Type': 'text/csv' },
   }),
+
+  // Экспорт отчётов (раздел 2.4.1, этап 7). Возвращают URL для скачивания CSV
+  // (сессионная кука уходит автоматически — тот же origin через прокси Vite).
+  teamCsvUrl: () => '/api/export/team.csv',
+  playerCsvUrl: (id) => `/api/export/player/${id}.csv`,
 }
